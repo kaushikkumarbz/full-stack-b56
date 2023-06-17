@@ -11,7 +11,7 @@ export default function Home() {
     const fetchData = async () => {
 
             try{
-            const response = await axios.get('https://fakestoreapi.com/products');
+            const response = await axios.get('http://localhost:3000/products');
             setData(response.data);
             }catch(error){
                 console.log(error);
@@ -22,14 +22,14 @@ export default function Home() {
 
     useEffect(()=>{
         fetchData();
-    })
+    },[])
 
 
   return (
     <div>
         {
            data.map((ele,index)=>{
-                return <Product  title={ele.title} price={ele.price} desc={ele.category} image={ele.image} />
+                return <Product key={index}  title={ele.title} price={ele.price} desc={ele.category} image={ele.image} />
            })
         }
     </div>
